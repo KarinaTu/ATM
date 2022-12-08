@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class PinCheck implements Action {
     @Override
     public void execute(Account account, Scanner scanner) {
@@ -8,18 +9,18 @@ public class PinCheck implements Action {
             try {
                 int inputtedPin = scanner.nextInt();
                 if (inputtedPin != account.getPin()) {
-                    if (inputtedPin < 999 || inputtedPin > 9999){
+                    if (inputtedPin < 999 || inputtedPin > 9999) {
                         System.out.println("PIN code must contain 4 digits. Please try again.");
                         System.out.print("Enter your PIN: ");
-                        continue;
+                    } else {
+                        System.out.println("Incorrect PIN. Please try again.");
+                        System.out.print("Enter your PIN: ");
                     }
-                    System.out.println("Incorrect PIN. Please try again.");
-                    System.out.print("Enter your PIN: ");
-                    continue;
+                } else {
+                    access = true;
+                    System.out.println("PIN verified.\n" + account.getClientName() + ", welcome to your bank!");
                 }
-                access = true;
-                System.out.println("PIN verified.\n" + account.getClientName() + ", welcome to your bank!");
-            } catch (java.util.InputMismatchException e){
+            } catch (java.util.InputMismatchException e) {
                 System.out.println("Incorrect PIN. Please try again.");
                 scanner.next();
             }

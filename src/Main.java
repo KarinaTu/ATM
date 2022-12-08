@@ -24,16 +24,15 @@ public class Main {
                 System.out.println("Please select the action: 1 = Withdrawal, 2= Deposit, 3 = Exit");
                 try {
                     int inputtedChoice = scanner.nextInt();
-                    if (inputtedChoice <= 0 || inputtedChoice > 3) {
+                    if (inputtedChoice < 1 || inputtedChoice > 3) {
                         System.out.println("Incorrect selection. Please try again.");
                         continue;
-                    }
-                    choice = true;
-                    if (inputtedChoice == 3) {
+                    } else if (inputtedChoice == 3) {
                         session = false;
                     } else {
                         actions.get(inputtedChoice).execute(user, scanner);
                     }
+                    choice = true;
                 } catch (InputMismatchException e) {
                     System.out.println("Inserted wrong number. Please try again.");
                     scanner.next();
