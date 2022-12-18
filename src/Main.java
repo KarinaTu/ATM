@@ -12,11 +12,11 @@ public class Main {
         actions.add(1, new CashOut());
         actions.add(2, new Deposit());
 
-        boolean session = false;
+        boolean isSessionActive = false;
         while (true) {
-            if (!session) {
+            if (!isSessionActive) {
                 actions.get(0).execute(user, scanner);
-                session = true;
+                isSessionActive = true;
             }
             System.out.println("Your account balance is " + user.getBalance());
             boolean choice = false;
@@ -28,7 +28,7 @@ public class Main {
                         System.out.println("Incorrect selection. Please try again.");
                         continue;
                     } else if (inputtedChoice == 3) {
-                        session = false;
+                        isSessionActive = false;
                     } else {
                         actions.get(inputtedChoice).execute(user, scanner);
                     }
